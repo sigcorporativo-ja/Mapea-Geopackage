@@ -1,0 +1,53 @@
+{
+  "name": "mapea-geopackage",
+  "version": "1.0.0",
+  "description": "Extensión de Mapea para el soporte de GeoPackage",
+  "keywords": [
+    "map",
+    "mapea",
+    "geopackage",
+    "mapping",
+    "tool",
+    "sigcorporativo-ja"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sigcorporativo-ja/mapea-geopackage"
+  },
+  "license": "EUPL",
+  "bugs": {
+    "url": "https://github.com/sigcorporativo-ja/mapea-geopackage/issues"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.4.4",
+    "babel-loader": "^8.0.0-beta.4",
+    "copy-webpack-plugin": "^6.1.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "terser-webpack-plugin": "^4.2.1",
+    "uglify-js": "^2.6.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "yargs": "^16.2.0"
+  },
+  "dependencies": {
+    "@ngageoint/geopackage": "^3.0.4",
+    "sql.js": "^1.3.2"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --config=webpack-config/webpack.development.config.js",
+    "prebuild": "node task/clean-build.js --path=dist && node task/create-entrypoint.js ",
+    "build": "webpack --config=webpack-config/webpack.production.config.js",
+    "test-build": "npm run build && live-server --open=test/prod.html",
+    "check": "eslint ./src",
+    "fix": "eslint --fix ./src"
+  }
+}
