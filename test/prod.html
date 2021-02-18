@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="mapea" content="yes">
+    <title>Mapea GeoPackage Production TEST</title>
+    <link href="https://sigc.desarrollo.guadaltel.es/mapea6/assets/css/mapea-6.0.0.ol.min.css" rel="stylesheet" />
+    <style rel="stylesheet">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="mapjs" class="container"></div>
+    <script type="text/javascript" src="./mapea-6.0.0.ol.min.js"></script>
+    <script type="text/javascript" src="https://sigc.desarrollo.guadaltel.es/mapea6/js/configuration-6.0.0.js"></script>
+    <script type="text/javascript" src="../dist/mapea-geopackage-1.0.0.ol.min.js"></script>
+    <script type="text/javascript">
+        const mapjs = M.map({
+            container: 'mapjs',
+            projection: 'EPSG:3857*m',
+            controls: ['layerswitcher', 'panzoom'],
+            layers: ['OSM'],
+        });
+
+        M.config.SQL_WASM_URL = 'http://127.0.0.1:8080/node_modules/sql.js/dist/';
+        fetch('/test/rivers.gpkg').then((response) => {
+            const gpkg = new M.layer.GeoPackage(response);
+            mapjs.addGeoPackage(gpkg);
+        });
+    </script>
+</body>
+
+</html>
