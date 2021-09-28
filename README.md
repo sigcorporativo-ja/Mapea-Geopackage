@@ -84,27 +84,29 @@ index.html
 ### class M.layer.GeoPackage
 
 - Constructor:
-  
+
   new M.layer.GeoPackage(data, options)
-  
-  data: El fichero  que contiene la información de geopackage (.gkpg). Tipo: [Response](https://developer.mozilla.org/es/docs/Web/API/Response) | 
-  [File](https://developer.mozilla.org/es/docs/Web/API/File) | 
+
+  data: El fichero  que contiene la información de geopackage (.gkpg). Tipo: [Response](https://developer.mozilla.org/es/docs/Web/API/Response) |
+  [File](https://developer.mozilla.org/es/docs/Web/API/File) |
   [Uint8Array](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Uint8Array)
-  
-  options: El objeto de opciones para pasarle a las diferentes capas que contiene GeoPackage. Si son vectoriales se instancian con M.layer.GeoJSON, si son raster se usa la clase M.layer.GeoPackageTile. 
+
+  options: El objeto de opciones para pasarle a las diferentes capas que contiene GeoPackage. Si son vectoriales se instancian con M.layer.GeoJSON, si son raster se usa la clase M.layer.GeoPackageTile.
   Estructura:
   ```javascript
   const options = {
     id_capa_vectorial_en_geopackage: {
-      extent, // extensión de la capa. Opcional
       name, // Nombre interno de la capa. Opcional
       legend, // Leyenda para mostrar en TOC. Opcional
+      extract, // Permite consultar los atributos. Opcional
     },
     id_capa_raster_en_geopackage: {
       transparent, // Establece si la capa es base. Opcional
       extent, // Extensión de la capa. Opcional
       name, // Nombre interno de la capa. Opcional
       legend, // Leyenda para mostrar en TOC. Opcional
+      visibility, // Establece si la capa está visible. Opcional
+      opacity: // Establece la opacidad de la capa. Opcional
     }
   }
 
